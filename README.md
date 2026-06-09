@@ -163,16 +163,6 @@ The EA sends information about:
 * Internet connection
 * Access to the configured API endpoint
 
-## Troubleshooting
-
-### URL not allowed
-
-Add the API host to:
-
-```text
-Tools -> Options -> Expert Advisors -> Allow WebRequest for listed URL
-```
-
 ### No events received
 
 Check:
