@@ -60,12 +60,16 @@ void OnTradeTransaction(const MqlTradeTransaction& trans,
          break;
    }
 
+   long account = AccountInfoInteger(ACCOUNT_LOGIN);
+   string broker = AccountInfoString(ACCOUNT_COMPANY);
+
    string symbol       = HistoryDealGetString(deal_ticket, DEAL_SYMBOL);
    double volume       = HistoryDealGetDouble(deal_ticket, DEAL_VOLUME);
    double price        = HistoryDealGetDouble(deal_ticket, DEAL_PRICE);
    double profit       = HistoryDealGetDouble(deal_ticket, DEAL_PROFIT);
+   double stoploss = HistoryDealGetDouble(deal_ticket, DEAL_SL);
+   double takeprofit = HistoryDealGetDouble(deal_ticket, DEAL_TP);
 
-   long magic          = HistoryDealGetInteger(deal_ticket, DEAL_MAGIC);
    long position_id    = HistoryDealGetInteger(deal_ticket, DEAL_POSITION_ID);
    long deal_type      = HistoryDealGetInteger(deal_ticket, DEAL_TYPE);
    long time           = HistoryDealGetInteger(deal_ticket, DEAL_TIME);
@@ -80,6 +84,8 @@ void OnTradeTransaction(const MqlTradeTransaction& trans,
 
    string json = StringFormat(
       "{"
+      "\"account\":\"%I64u\","
+      "\"broker\":\"%s\","
       "\"event\":\"%s\","
       "\"deal_ticket\":%I64u,"
       "\"position_id\":%I64d,"
@@ -88,9 +94,12 @@ void OnTradeTransaction(const MqlTradeTransaction& trans,
       "\"volume\":%f,"
       "\"price\":%f,"
       "\"profit\":%f,"
-      "\"magic\":%I64d,"
+      "\"takeprofit\":%f,"
+      "\"stoploss\":%f,"
       "\"timestamp\":%I64d"
       "}",
+      account,
+      broker,
       event_type,
       deal_ticket,
       position_id,
@@ -99,7 +108,8 @@ void OnTradeTransaction(const MqlTradeTransaction& trans,
       volume,
       price,
       profit,
-      magic,
+      takeprofit,
+      stoploss,
       time
    );
 
