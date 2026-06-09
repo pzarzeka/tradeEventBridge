@@ -171,3 +171,22 @@ Check:
 * API URL is correct
 * Internet connection is available
 * MT5 Experts tab for error messages
+
+### Samples
+
+```
+{
+  "account": "1513504536",
+  "event": "open",
+  "deal_ticket": 448992293,
+  "position_id": 467996682,
+  "symbol": "EURUSD",
+  "side": "buy",
+  "volume": 0.01,
+  "price": 1.1574,
+  "profit": 0,
+  "takeprofit": 0,
+  "stoploss": 0,
+  "timestamp": 1781017318
+}
+```
